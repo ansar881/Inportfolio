@@ -49,11 +49,12 @@ import { CommonModule } from '@angular/common';
           </div>
           <div class="hero-image">
             <div class="image-placeholder">
-              <svg viewBox="0 0 200 200" class="avatar-svg">
+              <!-- <svg viewBox="0 0 200 200" class="avatar-svg">
                 <circle cx="100" cy="100" r="95" fill="#e0e7ff"/>
                 <circle cx="100" cy="80" r="35" fill="#2563eb"/>
                 <path d="M 40 170 Q 100 130 160 170" fill="#2563eb"/>
-              </svg>
+              </svg> -->
+              <img src="/assets/AnsarKhan_pass_photo.jpg" alt="profile-pic" />
             </div>
           </div>
         </div>
@@ -223,6 +224,13 @@ import { CommonModule } from '@angular/common';
       transform: scale(1.05);
     }
 
+    .image-placeholder img{
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
     .avatar-svg {
       width: 100%;
       height: 100%;

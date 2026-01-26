@@ -32,6 +32,12 @@ import { ContactComponent } from './components/contact.component';
             <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="#education" class="nav-link">Education</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li>
+              <a class="res-down"
+              (click)="downloadResume()">
+               Download Resume
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -44,13 +50,22 @@ import { ContactComponent } from './components/contact.component';
       <app-contact id="contact"></app-contact>
 
       <footer class="footer">
-        <p>&copy; 2026 Ansar Khan. All rights reserved.</p>
+        <p>&copy; Ansar Khan. All rights reserved.</p>
       </footer>
     </div>
   `,
   styles: [`
     .portfolio {
       min-height: 100vh;
+    }
+
+    .res-down{
+      cursor: pointer;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
     }
 
     .navbar {
@@ -144,6 +159,17 @@ import { ContactComponent } from './components/contact.component';
     }
   `]
 })
-export class App {}
+export class App {
+  downloadResume() {
+    const link = document.createElement('a');
+    link.href = '/assets/Ansar_Khan.pdf';
+    link.download = 'Ansar_Khan.pdf';
+    link.target = '_blank';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
 
 bootstrapApplication(App);
