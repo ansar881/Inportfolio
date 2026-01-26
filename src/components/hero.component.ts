@@ -54,7 +54,7 @@ import { CommonModule } from '@angular/common';
                 <circle cx="100" cy="80" r="35" fill="#2563eb"/>
                 <path d="M 40 170 Q 100 130 160 170" fill="#2563eb"/>
               </svg> -->
-              <img src="/assets/AnsarKhan_pass_photo.jpg" alt="profile-pic" />
+              <img src="assets/AnsarKhan_pass_photo.jpg" alt="profile-pic" />
             </div>
           </div>
         </div>

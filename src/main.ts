@@ -162,7 +162,7 @@ import { ContactComponent } from './components/contact.component';
 export class App {
   downloadResume() {
     const link = document.createElement('a');
-    link.href = '/assets/Ansar_Khan.pdf';
+    link.href = 'assets/Ansar_Khan.pdf';
     link.download = 'Ansar_Khan.pdf';
     link.target = '_blank';
 
