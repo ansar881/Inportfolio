@@ -207,7 +207,8 @@ export class ProjectsComponent {
         'Developing role-based Unified Customer Management System for PNG/CNG customers & partners, covering onboarding, billing, CRM, DRM and admin modules using Angular 21.',
         'Implementing RESTful APIs with adaptors using HTTP Clients, lazy loading, RxJS, reusable component and Bootstrap for a modular, scalable and optimized frontend architecture.'
       ],
-      technologies: ['Angular 21', 'TypeScript', 'RxJS', 'Bootstrap', 'RESTful APIs']
+      technologies: ['Angular 21', 'TypeScript', 'JavaScript', 'RxJS', 'HTML', 'CSS/SCSS',
+         'Bootstrap', 'RESTful APIs', 'Git & Gitea', 'XLSX']
     },
     {
       name: 'Wings ERP',
@@ -217,7 +218,8 @@ export class ProjectsComponent {
         'Built responsive, reusable UIs with Directives and Pipes, configured routing with lazy loading and managed state via @Input/@Output, Services and Reactive Forms.',
         'Enabling transaction, report and master data management with a focus on performance and code reusability.'
       ],
-      technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'RESTful APIs']
+      technologies: ['Angular', 'Ionic', 'TypeScript', 'JavaScript', 'HTML', 'CSS/SCSS',
+         'RxJS', 'RESTful APIs', 'Tailwind CSS', 'BitBucket', 'Git', 'XLSX']
     },
     {
       name: 'ApnaaGhar',
@@ -227,8 +229,8 @@ export class ProjectsComponent {
         'Implemented location-based search, authentication (login, sign-up, logout) with reactive form validation, property filtering and detailed property views for enhanced user experience.',
         'Optimized performance using lazy-loading and built a responsive UI leveraging the PrimeNG library.'
       ],
-      technologies: ['Angular 18', 'PrimeNG', 'TypeScript', 'Reactive Forms'],
-      link: 'https://github.com/ansarkhan'
+      technologies: ['Angular 18', 'PrimeNG', 'TypeScript', 'JavaScript', 'Reactive Forms', 'Git & GitHub'],
+      link: 'https://ansar881.github.io/ApnaaGhar/'
     }
   ];
 }

@@ -25,16 +25,23 @@ import { ContactComponent } from './components/contact.component';
       <nav class="navbar">
         <div class="nav-container">
           <a href="#home" class="logo">AK</a>
-          <ul class="nav-menu">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#experience" class="nav-link">Experience</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#education" class="nav-link">Education</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+          <div class="hamburger" [class.active]="menuOpen" (click)="toggleMenu()">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" class="hamburger-line hamburger-line-1"></line>
+              <line x1="3" y1="12" x2="21" y2="12" class="hamburger-line hamburger-line-2"></line>
+              <line x1="3" y1="18" x2="21" y2="18" class="hamburger-line hamburger-line-3"></line>
+            </svg>
+          </div>
+          <ul class="nav-menu" [class.active]="menuOpen">
+            <li><a href="#home" class="nav-link" [class.active]="activeSection === 'home'" (click)="toggleMenu()">Home</a></li>
+            <li><a href="#skills" class="nav-link" [class.active]="activeSection === 'skills'" (click)="toggleMenu()">Skills</a></li>
+            <li><a href="#experience" class="nav-link" [class.active]="activeSection === 'experience'" (click)="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" class="nav-link" [class.active]="activeSection === 'projects'" (click)="toggleMenu()">Projects</a></li>
+            <li><a href="#education" class="nav-link" [class.active]="activeSection === 'education'" (click)="toggleMenu()">Education</a></li>
+            <li><a href="#contact" class="nav-link" [class.active]="activeSection === 'contact'" (click)="toggleMenu()">Contact</a></li>
             <li>
               <a class="res-down"
-              (click)="downloadResume()">
+              (click)="downloadResume(); toggleMenu()">
                Download Resume
               </a>
             </li>
@@ -108,6 +115,50 @@ import { ContactComponent } from './components/contact.component';
       padding: 0;
     }
 
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 4px;
+      color: #2563eb;
+      transition: all 0.3s ease;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hamburger:hover {
+      color: #1d4ed8;
+      transform: scale(1.05);
+    }
+
+    .hamburger svg {
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      overflow: visible;
+    }
+
+    .hamburger-line {
+      transform-origin: center;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .hamburger.active .hamburger-line-1 {
+      transform: rotate(45deg) translateY(6px);
+    }
+
+    .hamburger.active .hamburger-line-2 {
+      opacity: 0;
+      transform: translateX(0);
+    }
+
+    .hamburger.active .hamburger-line-3 {
+      transform: rotate(-45deg) translateY(-6px);
+    }
+
     .nav-link {
       color: #374151;
       text-decoration: none;
@@ -135,6 +186,17 @@ import { ContactComponent } from './components/contact.component';
       width: 100%;
     }
 
+    .nav-link.active {
+      color: #2563eb;
+      background-color: rgba(37, 99, 235, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+    }
+
+    .nav-link.active::after {
+      display: none;
+    }
+
     .footer {
       background: #1f2937;
       color: #fff;
@@ -149,17 +211,98 @@ import { ContactComponent } from './components/contact.component';
 
     @media (max-width: 768px) {
       .nav-menu {
-        gap: 1rem;
-        font-size: 0.9rem;
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.99);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+        gap: 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-menu li {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .hamburger {
+        display: flex;
       }
 
       .nav-container {
         padding: 1rem;
       }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .res-down {
+        display: inline-block;
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0.8rem;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+      }
+
+      .nav-menu {
+        top: 60px;
+      }
+
+      .navbar {
+        position: fixed;
+      }
     }
   `]
 })
 export class App {
+  menuOpen = false;
+  activeSection = 'home';
+
+  constructor() {
+    this.setupScrollListener();
+  }
+
+  setupScrollListener() {
+    window.addEventListener('scroll', () => {
+      const sections = ['home', 'skills', 'experience', 'projects', 'education', 'contact'];
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            this.activeSection = section;
+            break;
+          }
+        }
+      }
+    });
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
   downloadResume() {
     const link = document.createElement('a');
     link.href = 'assets/Ansar_Khan.pdf';
